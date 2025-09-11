@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Github, Zap, Loader2 } from "lucide-react";
+import { Github, Zap, Loader2, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import type { CustomUser } from "@/types/auth";
@@ -93,11 +93,11 @@ const Header = () => {
                 )}
               </div>
               <Button
+                onClick={handleLogout}
                 variant="outline"
                 size="sm"
-                onClick={handleLogout}
                 disabled={isLoggingOut}
-                className="transition-3d hover:scale-105 border-border/50 hover:bg-destructive hover:text-destructive-foreground hover:shadow-glow"
+                className="border-slate-600 bg-slate-800/50 hover:bg-slate-700/50 text-slate-300 hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-500/20"
               >
                 {isLoggingOut ? (
                   <>
@@ -105,7 +105,10 @@ const Header = () => {
                     Logging out...
                   </>
                 ) : (
-                  "Logout"
+                  <>
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign out
+                  </>
                 )}
               </Button>
             </div>
@@ -113,7 +116,7 @@ const Header = () => {
             <Button
               onClick={handleLogin}
               disabled={isLoggingIn}
-              className="bg-gradient-primary text-white hover:scale-105 transition-3d shadow-3d hover:shadow-glow"
+              className="bg-gradient-primary text-white hover:scale-105 transition-all duration-300 shadow-3d hover:shadow-glow"
             >
               {isLoggingIn ? (
                 <>

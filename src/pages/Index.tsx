@@ -107,20 +107,20 @@ const Index = () => {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
-            <div className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-500/10 to-purple-600/10 border border-purple-500/20 rounded-full backdrop-blur-sm hover:from-purple-500/20 hover:to-purple-600/20 transition-all duration-300">
-              <Sparkles className="w-4 h-4 text-purple-400 group-hover:text-purple-300" />
+            <div className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-500/10 to-purple-600/10 border border-purple-500/20 rounded-full backdrop-blur-sm hover:from-purple-500/20 hover:to-purple-600/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/20">
+              <Sparkles className="w-4 h-4 text-purple-400 group-hover:text-purple-300 transition-colors duration-300" />
               <span className="text-sm font-medium text-purple-300 group-hover:text-purple-200">
                 AI-Powered Roasts
               </span>
             </div>
-            <div className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-500/20 rounded-full backdrop-blur-sm hover:from-orange-500/20 hover:to-orange-600/20 transition-all duration-300">
-              <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+            <div className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-500/20 rounded-full backdrop-blur-sm hover:from-orange-500/20 hover:to-orange-600/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/20">
+              <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse group-hover:animate-bounce"></div>
               <span className="text-sm font-medium text-orange-300 group-hover:text-orange-200">
                 Instant Analysis
               </span>
             </div>
-            <div className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-cyan-500/10 to-cyan-600/10 border border-cyan-500/20 rounded-full backdrop-blur-sm hover:from-cyan-500/20 hover:to-cyan-600/20 transition-all duration-300">
-              <Users className="w-4 h-4 text-cyan-400 group-hover:text-cyan-300" />
+            <div className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-cyan-500/10 to-cyan-600/10 border border-cyan-500/20 rounded-full backdrop-blur-sm hover:from-cyan-500/20 hover:to-cyan-600/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20">
+              <Users className="w-4 h-4 text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300 group-hover:animate-pulse" />
               <span className="text-sm font-medium text-cyan-300 group-hover:text-cyan-200">
                 Community Sharing
               </span>
