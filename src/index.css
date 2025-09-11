@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* bruhbug Design System - Modern gradients with 3D elements */
+
+@layer base {
+  :root {
+    /* Dark gradient base */
+    --background: 222 23% 8%;
+    --foreground: 210 40% 98%;
+
+    /* Card system with glass morphism */
+    --card: 222 20% 11%;
+    --card-foreground: 210 40% 98%;
+
+    /* Popover elements */
+    --popover: 222 20% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Vibrant gradient primary system */
+    --primary: 280 100% 70%;
+    --primary-foreground: 210 40% 98%;
+    --primary-hover: 285 100% 75%;
+
+    /* Gradient secondary */
+    --secondary: 222 20% 15%;
+    --secondary-foreground: 210 40% 95%;
+
+    /* Muted with subtle gradients */
+    --muted: 222 20% 12%;
+    --muted-foreground: 215 20% 70%;
+
+    /* Accent gradients */
+    --accent: 195 100% 50%;
+    --accent-foreground: 210 40% 98%;
+
+    /* Error states */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Borders and inputs */
+    --border: 222 20% 18%;
+    --input: 222 20% 15%;
+    --ring: 280 100% 70%;
+
+    /* Custom gradient variables */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(280, 100%, 70%) 0%,
+      hsl(195, 100%, 50%) 100%
+    );
+    --gradient-secondary: linear-gradient(
+      135deg,
+      hsl(222, 20%, 15%) 0%,
+      hsl(222, 20%, 11%) 100%
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(195, 100%, 50%) 0%,
+      hsl(285, 100%, 75%) 100%
+    );
+    --gradient-background: radial-gradient(
+      ellipse at top,
+      hsl(222, 23%, 12%) 0%,
+      hsl(222, 23%, 8%) 100%
+    );
+    --gradient-card: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+
+    /* 3D Effects */
+    --shadow-3d:
+      0 10px 30px -5px rgba(0, 0, 0, 0.3), 0 0 50px rgba(128, 0, 255, 0.1);
+    --shadow-glow: 0 0 30px rgba(128, 0, 255, 0.3);
+    --shadow-card:
+      0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Enhanced dark gradient mode */
+    --background: 222 23% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 20% 9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 20% 9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 285 100% 75%;
+    --primary-foreground: 222 23% 6%;
+    --primary-hover: 290 100% 80%;
+
+    --secondary: 222 20% 12%;
+    --secondary-foreground: 210 40% 95%;
+
+    --muted: 222 20% 10%;
+    --muted-foreground: 215 20% 75%;
+
+    --accent: 200 100% 55%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 20% 15%;
+    --input: 222 20% 12%;
+    --ring: 285 100% 75%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    background: var(--gradient-background);
+    @apply text-foreground font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Custom styles for bruhbug */
+  .font-mono-code {
+    font-family:
+      "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro",
+      monospace;
+  }
+
+  /* 3D Enhanced transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-3d {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d;
+  }
+
+  /* Gradient backgrounds */
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+
+  /* 3D Effects */
+  .shadow-3d {
+    box-shadow: var(--shadow-3d);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Floating animation */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotateX(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotateX(2deg);
+    }
+  }
+
+  /* Gradient text effect */
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Glass morphism effect */
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* 3D Card hover effect */
+  .card-3d:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateZ(10px);
+  }
+
+  /* Custom scrollbar with gradient */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    box-shadow: var(--shadow-glow);
+  }
+}
