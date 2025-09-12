@@ -38,17 +38,16 @@ export const useBugAI = (onSuccess?: () => void) => {
           true
         );
 
-        const unsubscribe = client.subscribe(
-          `databases.${DATABASE_ID}.tables.${BUGS_COLLECTION_ID}.rows.${documentId}.create`,
-          (response) => {
-            const doc = response.payload as AIProcessingResult;
+        const unsubscribe = client.subscribe(`rows`, (response) => {
+          const doc = response.payload as { $id: string; roast?: string };
+          if (doc.$id === documentId) {
             if (doc.roast && doc.roast.trim()) {
               setResult({ documentId, roast: doc.roast });
               setIsProcessing(false);
               if (onSuccess) onSuccess();
             }
           }
-        );
+        });
 
         return () => unsubscribe();
       } catch (err) {
