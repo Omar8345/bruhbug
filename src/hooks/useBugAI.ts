@@ -5,6 +5,7 @@ import {
   FUNCTION_ID,
   DATABASE_ID,
   BUGS_COLLECTION_ID,
+  databases,
 } from "@/lib/appwrite";
 import { useAuth } from "@/contexts/AuthContext";
 import { client } from "@/lib/appwrite";
@@ -27,8 +28,23 @@ export const useBugAI = (onSuccess?: () => void) => {
       setResult(null);
 
       const documentId = ID.unique();
+      let unsubscribe: (() => void) | null = null;
+      let pollInterval: NodeJS.Timeout | null = null;
+      let timeoutId: NodeJS.Timeout | null = null;
 
       try {
+        unsubscribe = client.subscribe(`rows`, (response) => {
+          console.log("Subscription response:", response);
+          const doc = response.payload as { $id: string; roast?: string };
+          if (doc.$id === documentId && doc.roast && doc.roast.trim()) {
+            setResult({ documentId, roast: doc.roast });
+            setIsProcessing(false);
+            if (pollInterval) clearInterval(pollInterval);
+            if (timeoutId) clearTimeout(timeoutId);
+            if (onSuccess) onSuccess();
+          }
+        });
+
         await functions.createExecution(
           FUNCTION_ID,
           JSON.stringify({
@@ -38,22 +54,24 @@ export const useBugAI = (onSuccess?: () => void) => {
           true
         );
 
-        const unsubscribe = client.subscribe(`rows`, (response) => {
-          console.log("Subscription response:", response);
-          const doc = response.payload as { $id: string; roast?: string };
-          if (doc.$id === documentId) {
-            if (doc.roast && doc.roast.trim()) {
-              setResult({ documentId, roast: doc.roast });
-              setIsProcessing(false);
-              if (onSuccess) onSuccess();
-            }
-          }
-        });
+        timeoutId = setTimeout(() => {
+          if (pollInterval) clearInterval(pollInterval);
+          if (unsubscribe) unsubscribe();
+          setError("Processing timeout - please try again");
+          setIsProcessing(false);
+        }, 10000);
 
-        return () => unsubscribe();
+        return () => {
+          if (pollInterval) clearInterval(pollInterval);
+          if (timeoutId) clearTimeout(timeoutId);
+          if (unsubscribe) unsubscribe();
+        };
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to process bug");
         setIsProcessing(false);
+        if (pollInterval) clearInterval(pollInterval);
+        if (timeoutId) clearTimeout(timeoutId);
+        if (unsubscribe) unsubscribe();
         throw err;
       }
     },
