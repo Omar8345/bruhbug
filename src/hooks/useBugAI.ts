@@ -39,6 +39,7 @@ export const useBugAI = (onSuccess?: () => void) => {
         );
 
         const unsubscribe = client.subscribe(`rows`, (response) => {
+          console.log("Subscription response:", response);
           const doc = response.payload as { $id: string; roast?: string };
           if (doc.$id === documentId) {
             if (doc.roast && doc.roast.trim()) {
