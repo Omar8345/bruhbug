@@ -55,10 +55,23 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       setLoading(true);
       setIsOAuthCallback(true);
-      await authService.checkAuth();
-      const currentUser = await authService.getCurrentUser();
-      setUser(currentUser);
-      window.history.replaceState({}, document.title, window.location.pathname);
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const userId = urlParams.get("userId");
+      const secret = urlParams.get("secret");
+
+      if (userId && secret) {
+        const user = await authService.handleOAuthCallback(userId, secret);
+        setUser(user);
+
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname,
+        );
+      } else {
+        await checkAuth();
+      }
     } catch (error) {
       console.error("OAuth callback error:", error);
       await checkAuth();

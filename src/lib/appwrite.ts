@@ -31,10 +31,11 @@ export const AUTH_EVENTS = {
 export const authService = {
   async loginWithGitHub() {
     try {
-      return await account.createOAuth2Session(
+      const baseUrl = window.location.origin;
+      return await account.createOAuth2Token(
         OAuthProvider.Github,
-        `${window.location.origin}/`,
-        `${window.location.origin}/login-failure`,
+        `${baseUrl}/auth/callback`,
+        `${baseUrl}/auth/failure`,
       );
     } catch (error) {
       console.error("GitHub login error:", error);
@@ -42,8 +43,13 @@ export const authService = {
     }
   },
 
-  async getCurrentUser(): Promise<CustomUser | null> {
+  async handleOAuthCallback(
+    userId: string,
+    secret: string,
+  ): Promise<CustomUser | null> {
     try {
+      await account.createSession(userId, secret);
+
       const user = await account.get();
       const session = await account.getSession("current");
 
@@ -70,6 +76,16 @@ export const authService = {
         }
       }
 
+      return user as CustomUser;
+    } catch (error) {
+      console.error("OAuth callback error:", error);
+      throw error;
+    }
+  },
+
+  async getCurrentUser(): Promise<CustomUser | null> {
+    try {
+      const user = await account.get();
       return user as CustomUser;
     } catch (error) {
       console.error("Get current user error:", error);

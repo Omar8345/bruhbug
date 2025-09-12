@@ -97,7 +97,7 @@ const Header = () => {
                 variant="outline"
                 size="sm"
                 disabled={isLoggingOut}
-                className="border-slate-600 bg-slate-800/50 hover:bg-slate-700/50 text-slate-300 hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-500/20"
+                className="bg-red-800/50 hover:bg-red-800/50 transition-all duration-300 hover:scale-105"
               >
                 {isLoggingOut ? (
                   <>

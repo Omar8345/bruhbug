@@ -20,27 +20,22 @@ const Pagination = ({
     const rangeStart = Math.max(2, currentPage - delta);
     const rangeEnd = Math.min(totalPages - 1, currentPage + delta);
 
-    // Always show first page
     pages.push(1);
 
-    // Add dots if there's a gap
     if (rangeStart > 2) {
       pages.push("...");
     }
 
-    // Add pages around current
     for (let i = rangeStart; i <= rangeEnd; i++) {
       if (i !== 1 && i !== totalPages) {
         pages.push(i);
       }
     }
 
-    // Add dots if there's a gap
     if (rangeEnd < totalPages - 1) {
       pages.push("...");
     }
 
-    // Always show last page if more than 1 page
     if (totalPages > 1) {
       pages.push(totalPages);
     }
