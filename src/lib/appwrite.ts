@@ -10,7 +10,7 @@ import {
 
 const client = new Client()
   .setEndpoint(
-    import.meta.env.VITE_APPWRITE_ENDPOINT || "https://cloud.appwrite.io/v1",
+    import.meta.env.VITE_APPWRITE_ENDPOINT || "https://cloud.appwrite.io/v1"
   )
   .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID || "");
 
@@ -35,7 +35,7 @@ export const authService = {
       return await account.createOAuth2Token(
         OAuthProvider.Github,
         `${baseUrl}/auth/callback`,
-        `${baseUrl}/auth/failure`,
+        `${baseUrl}/auth/failure`
       );
     } catch (error) {
       console.error("GitHub login error:", error);
@@ -45,7 +45,7 @@ export const authService = {
 
   async handleOAuthCallback(
     userId: string,
-    secret: string,
+    secret: string
   ): Promise<CustomUser | null> {
     try {
       await account.createSession(userId, secret);

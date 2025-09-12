@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -29,7 +29,18 @@ const BugForm = ({ onSuccess }: { onSuccess?: () => void }) => {
       return;
     }
 
-    await submitBug(formData);
+    try {
+      const unsubscribe = await submitBug(formData);
+      useEffect(() => {
+        return () => {
+          if (unsubscribe) {
+            unsubscribe();
+          }
+        };
+      });
+    } catch (error) {
+      console.error("Failed to submit bug:", error);
+    }
   };
 
   const handleReset = () => {
@@ -113,8 +124,8 @@ const BugForm = ({ onSuccess }: { onSuccess?: () => void }) => {
                     formData.description.length > 450
                       ? "text-orange-400"
                       : formData.description.length > 400
-                        ? "text-yellow-400"
-                        : "text-slate-500"
+                      ? "text-yellow-400"
+                      : "text-slate-500"
                   }`}
                 >
                   {formData.description.length}/500 characters
