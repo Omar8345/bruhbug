@@ -31,13 +31,7 @@ const BugForm = ({ onSuccess }: { onSuccess?: () => void }) => {
 
     try {
       const unsubscribe = await submitBug(formData);
-      useEffect(() => {
-        return () => {
-          if (unsubscribe) {
-            unsubscribe();
-          }
-        };
-      });
+      return () => unsubscribe();
     } catch (error) {
       console.error("Failed to submit bug:", error);
     }

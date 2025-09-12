@@ -41,18 +41,15 @@ export const useBugAI = (onSuccess?: () => void) => {
         console.log("Waiting for AI processing...");
         console.log("Document ID:", documentId);
 
-        const unsubscribe = client.subscribe(
-          `databases.${DATABASE_ID}.collections.${BUGS_COLLECTION_ID}.documents`,
-          (response) => {
-            console.log("Subscription response:", response);
-            const doc = response.payload as AIProcessingResult;
-            if (doc.$id === documentId && doc.roast && doc.roast.trim()) {
-              setResult({ documentId, roast: doc.roast });
-              setIsProcessing(false);
-              if (onSuccess) onSuccess();
-            }
+        const unsubscribe = client.subscribe(`rows`, (response) => {
+          console.log("Subscription response:", response);
+          const doc = response.payload as AIProcessingResult;
+          if (doc.roast && doc.roast.trim()) {
+            setResult({ documentId, roast: doc.roast });
+            setIsProcessing(false);
+            if (onSuccess) onSuccess();
           }
-        );
+        });
 
         return () => unsubscribe();
       } catch (err) {
