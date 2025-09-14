@@ -202,8 +202,6 @@ This project is open source and available under the [MIT License](LICENSE).
 - **Live Demos:**  
   - [oops.appwrite.network](https://oops.appwrite.network)  
   - [bruhbug.appwrite.network](https://bruhbug.appwrite.network)
-- **Issues:** [GitHub Issues](https://github.com/Omar8345/bruhbug/issues)  
-- **Discussions:** [GitHub Discussions](https://github.com/Omar8345/bruhbug/discussions)
 
 ---
 
