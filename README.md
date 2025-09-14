@@ -7,7 +7,10 @@
 <h1 align="center">🔥 bruhbug</h1>
 <p align="center">
   <b>Turn your code disasters into comedy gold!</b><br>
-  <i>Get AI-powered bug explanations, savage roasts, and real solutions. Where debugging meets entertainment.</i>
+  <i>Get AI-powered bug explanations, savage roasts, and real solutions. Where debugging meets entertainment.</i><br><br>
+  <a href="https://oops.appwrite.network" target="_blank">
+    <img src="https://img.shields.io/badge/🚀 Live Demo-oops.appwrite.network-C06ECD?style=for-the-badge" alt="bruhbug Demo"/>
+  </a>
 </p>
 
 ---
@@ -194,10 +197,12 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-## 🆘 Support & Community
+## 💬 Try It and Share Your Experience
 
-- **Live Demo:** [oops.appwrite.network](https://oops.appwrite.network)
-- **Issues:** [GitHub Issues](https://github.com/Omar8345/bruhbug/issues)
+- **Live Demos:**  
+  - [oops.appwrite.network](https://oops.appwrite.network)  
+  - [bruhbug.appwrite.network](https://bruhbug.appwrite.network)
+- **Issues:** [GitHub Issues](https://github.com/Omar8345/bruhbug/issues)  
 - **Discussions:** [GitHub Discussions](https://github.com/Omar8345/bruhbug/discussions)
 
 ---
