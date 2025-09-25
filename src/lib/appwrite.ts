@@ -32,7 +32,7 @@ export const authService = {
   async loginWithGitHub() {
     try {
       const baseUrl = window.location.origin;
-      return await account.createOAuth2Token(
+      return await account.createOAuth2Session(
         OAuthProvider.Github,
         `${baseUrl}/auth/callback`,
         `${baseUrl}/auth/failure`
@@ -43,13 +43,8 @@ export const authService = {
     }
   },
 
-  async handleOAuthCallback(
-    userId: string,
-    secret: string
-  ): Promise<CustomUser | null> {
+  async getCurrentUser(): Promise<CustomUser | null> {
     try {
-      await account.createSession(userId, secret);
-
       const user = await account.get();
       const session = await account.getSession("current");
 
@@ -78,21 +73,11 @@ export const authService = {
 
       return user as CustomUser;
     } catch (error) {
-      console.error("OAuth callback error:", error);
-      throw error;
-    }
-  },
-
-  async getCurrentUser(): Promise<CustomUser | null> {
-    try {
-      const user = await account.get();
-      return user as CustomUser;
-    } catch (error) {
       console.error("Get current user error:", error);
       return null;
     }
   },
-
+  
   async logout() {
     try {
       await account.deleteSession("current");
